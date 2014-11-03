@@ -1,0 +1,41 @@
+@import url("jquery.countdownTimer.css");
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    min-width: 100%;
+    min-height: 100%;
+
+}
+
+#room {
+    overflow:           auto;
+    /*display: block;*/
+    width:              100%;
+    background-color:   red;
+    display: block;
+}
+
+#hud{
+    overflow:           auto;
+    width:              100%;
+    background-color:   blue;
+    display: block;
+
+}
+
+#countdowntimer{
+    background-color: blue;
+    height: 80%;
+    width: 80%;
+}
+#countDown{
+    top: 0.5%;
+    left: 0.5%;
+    position: absolute;
+    /*background-color: red;*/
+    height: 6%;
+    width: 10%;
+}
+

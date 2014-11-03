@@ -2,12 +2,12 @@ window.theme = {};
 
 var objects = [
     {
-        name: "Dagger",
-        img: "Dagger",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "20%",
+        left: "20%"
     },
     {
         name: "Hookah",
