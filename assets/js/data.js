@@ -1,6 +1,6 @@
 window.theme = {};
 
-var item = [
+var objects = [
     {
         name: "Dagger",
         img: "Dagger",
