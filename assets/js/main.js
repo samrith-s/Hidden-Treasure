@@ -10,6 +10,12 @@ function initTheme() {
 
 function createFindList() {
     objectHash = shuffle(objects);
+
+    for(var i = 0; i < objectHash.length; i++) {
+        objectHash[i].id=(i+1);
+        objectHash[i].click="false";
+    }
+
     for(var i = 0; i < 10; i++) {
         find.push(objectHash[i]);
     }
