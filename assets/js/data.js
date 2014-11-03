@@ -1,3 +1,4 @@
+window.theme = {};
 
 var item = [
     {
