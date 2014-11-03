@@ -97,6 +97,7 @@
                 window['seconds_S'+ $this.attr('id')] = opts.seconds;
                 onlySeconds($this, opts);
                 window['timer_S'+ $this.attr('id')] = setInterval(function(){
+                    ticking();
                     onlySeconds($this, opts)
                 }, opts.tickInterval * 1000);
             } else if(options.hours != undefined && options.minutes != undefined && options.seconds == undefined) {
@@ -297,7 +298,7 @@
         if(window['seconds_S'+ id].toString().length < 2) {
             window['seconds_S'+ id] = "0" + window['seconds_S'+ id];
         }
-        $this.html(window['seconds_S'+ id]+" "+"sec");
+        $this.html(window['seconds_S'+ id]);
         window['seconds_S'+ id] -= opts.tickInterval;
         if(window['seconds_S'+ id] < 0)
         {

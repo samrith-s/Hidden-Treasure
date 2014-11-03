@@ -2,40 +2,54 @@
 
 body{
     padding: 0;
-    margin: 0;
-    background-color: #fff;
-    min-width: 100%;
-    min-height: 100%;
-
+    margin: auto;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
 }
 
 #room {
     overflow:           auto;
     /*display: block;*/
     width:              100%;
+    height:             90vh;
     background-color:   red;
-    display: block;
+    display:            block;
+    overflow: auto;
 }
 
 #hud{
-    overflow:           auto;
-    width:              100%;
-    background-color:   blue;
-    display: block;
-
+    height: 10vh;
+    width: 100%;
+    /*background-color: blue;*/
 }
-
-#countdowntimer{
-    background-color: blue;
-    height: 80%;
-    width: 80%;
+#hud td{
+    text-align: center;
+    vertical-align: middle;
 }
-#countDown{
-    top: 0.5%;
-    left: 0.5%;
-    position: absolute;
-    /*background-color: red;*/
-    height: 6%;
-    width: 10%;
+#first-col{
+    height: 100%;
+    width: 30%;
+    background-color: #000000;
+}
+#second-col{
+    height: 100%;
+    width: 20%;
+    background-color: white;
+}
+#third-col{
+    height: 100%;
+    width: 30%;
+    background-color: #000000;
+}
+#splash{
+    top: 25%;
+    height: auto;
+    margin: auto;
+    min-width: 35%;
+    max-width: 35%;
+    padding: 2%;
+    /*background-color: blue;*/
+    position: relative;
 }
 

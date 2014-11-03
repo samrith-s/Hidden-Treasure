@@ -84,6 +84,7 @@ function processClick(id) {
     $("#" + getItem.name).animate({"width": "+=35%", "opacity": 0}, function(){
         $(this).delay().hide();
     });
+
     $("#" + getItem.id).animate({"width": "+=35%"}).hide();
 
     $("#" + getItem.id).attr("src", "assets/img/objects/opaque/" + getItem.name + ".png");
@@ -116,4 +117,8 @@ function victory() {
 function endGame() {
     var msg = "Uh Oh! <br /> Time's Up! <br /> <br/> Click 'Play Again' to Restart the Game"
     showSplash(msg, 0);
+}
+
+function ticking() {
+    console.log("Seconds changed!");
 }
