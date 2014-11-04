@@ -1,32 +1,39 @@
-var objectHash;
-var find;
+
+var objectHash = [];
+var find = [];
 var clicked;
 var gameType;
 
+
+$(function() {
+    setInterval(function() {
+        $("#hud").css("height", window.innerHeight*0.15);
+        $("#room").css("height", window.innerHeight*0.85);
+    }, 100);
+});
 
 function initTheme() {
     document.body.style.backgroundImage = "";
     objectHash = shuffle(objects);
     for(var i = 0; i < objectHash.length; i++) {
         objectHash[i].id = i+1;
-        objectHash[i].click="false";
-        objectHash[i].img = "<img src='assets/img/objects/" + objectHash[i].name + ".png' class='false' id='" + objectHash[i].name
-            + "' />";
+
+        objectHash[i].silhouette = "<img src='assets/img/objects/silhouettes/" + objectHash[i].name + ".png' class='img-scale' " +
+            "id='" + objectHash[i].id + "' />";
+
+        objectHash[i].img = "<img src='assets/img/objects/opaque/" + objectHash[i].name + ".png' class='img-scale' id='" +
+            objectHash[i].name + (i+1) + "' onclick='processClick(" + objectHash[i].id + ")' />";
+
     }
 
-    objectHash = [];
-    find = [];
-    clicked = false;
-    gameType = ["Name", "Silhouette", "Opacity"];
-    var random = getRandom(0,2);
-    gameType = gameType[random];
+    initGame();
+
 }
 
 function createFindList() {
     for(var i = 0; i < 10; i++) {
         find.push(objectHash[i]);
-        find[i].img = "<img src='assets/img/objects/" + find[i].name + ".png' onclick='processClick($(this))' class='true' id='" + find[i].name
-            + "' />";
+
     }
 }
 
@@ -37,15 +44,35 @@ function initPage() {
     for(var i = 10; i < objectHash.length; i++)
         $("#"+objectHash[i].parent).append(objectHash[i].img);
 
+    for(var i=0; i<find.length; i++)
+    {
+        $("#room").append(find[i].img);
+
+        $("#" + find[i].name + (i+1)).css({
+            "position": "absolute",
+            "top": find[i].top,
+            "left": find[i].left
+        });
+        if(i<5)
+            $("#first-col").append(find[i].silhouette);
+        else
+            $("#third-col").append(find[i].silhouette);
+    }
+
 }
 
 function initGame() {
+
     $("#countdown").countdowntimer({
         seconds: 120,
         tickInterval: 1,
         size: "lg",
         timeUp: endGame()
     });
+
+    createFindList();
+    initPage();
+
 }
 
 function getClick() {
@@ -55,7 +82,21 @@ function getClick() {
     });
 }
 
-function processClick(obj) {
+function processClick(id) {
+    var getItem;
+
+    for(i=0; i<find.length; i++)
+    if(id==find[i].id)
+        getItem = find[i];
+
+    var pos = $("#" + getItem.id).position();
+
+    $("#" + getItem.name + id).animate({"top": pos.top, "left": pos.left}, function(){
+        $(this).delay().hide();
+    });
+
+
+    $("#" + getItem.id).attr("src", "assets/img/objects/opaque/" + getItem.name + ".png");
 
 }
 
@@ -86,3 +127,6 @@ function endGame() {
     showSplash(msg, 0);
 }
 
+function ticking() {
+    console.log("Seconds changed!");
+}
