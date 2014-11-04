@@ -6,81 +6,81 @@ var objects = [
         img: "",
         silhouette: "",
         click: "",
-        top: "20%",
-        left: "20%"
+        top: "45%",
+        left: "45%"
     },
     {
-        name: "Hookah",
-        img: "Hookah",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "41%",
+        left: "25%"
     },
     {
-        name: "Elephant",
-        img: "Elephant",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "33%",
+        left: "69%"
     },
     {
-        name: "Chest",
-        img: "Chest",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "50%",
+        left: "12%"
     },
     {
-        name: "Vase",
-        img: "Vase",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "18%",
+        left: "25%"
     },
     {
-        name: "Painting",
-        img: "Painting",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "80%",
+        left: "60%"
     },
     {
-        name: "Book",
-        img: "Book",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "49%",
+        left: "10%"
     },
     {
-        name: "Horse",
-        img: "Horse",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "10%",
+        left: "5%"
     },
     {
-        name: "Rings",
-        img: "Rings",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
+        top: "4%",
+        left: "75%"
     },
     {
-        name: "Statue",
-        img: "Statue",
+        name: "Beer",
+        img: "",
         silhouette: "",
         click: "",
-        top: "",
-        left: ""
-    }
+        top: "35",
+        left: "13%"
+    },
 ]
 
 
