@@ -26,8 +26,8 @@ var objects = [
         left: ""
     },
     {
-        name: "Chest",
-        img: "Chest",
+        name: "Gems",
+        img: "Gems",
         silhouette: "",
         click: "",
         top: "",
