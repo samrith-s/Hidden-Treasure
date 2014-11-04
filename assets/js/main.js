@@ -1,14 +1,5 @@
 var objectHash = [];
 var find = [];
-var clicked;
-
-
-$(function() {
-    setInterval(function() {
-        $("#hud").css("height", window.innerHeight*0.15);
-        $("#room").css("height", window.innerHeight*0.85);
-    }, 100);
-});
 
 function initTheme() {
    document.body.style.backgroundImage = "";
@@ -42,9 +33,10 @@ function initPage() {
         $("#room").append(find[i].img);
 
         $("#" + find[i].name + (i+1)).css({
-            "position": "absolute",
-            "top": find[i].top,
-            "left": find[i].left
+            "position":     "absolute",
+            "top":          find[i].top,
+            "left":         find[i].left,
+            "overflow":     "auto"
         });
         if(i<5)
             $("#first-col").append(find[i].silhouette);
