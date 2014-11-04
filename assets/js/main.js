@@ -13,17 +13,16 @@ $(function() {
 function initTheme() {
    document.body.style.backgroundImage = "";
 
-    objectHash = objects;
-
-    //objectHash = shuffle(objects);
+    objectHash = shuffle(objects);
     for(var i = 0; i < objectHash.length; i++) {
         objectHash[i].id = i+1;
-        objectHash[i].silhouette = "<img src='assets/img/objects/silhouettes/" + objectHash[i].name + ".png' id='" + objectHash[i].id
-            + "' />";
-        objectHash[i].img = "<img src='assets/img/objects/opaque/" + objectHash[i].name + ".png' class='false' id='" + objectHash[i].name
-            + "' onclick='processClick(" + objectHash[i].id + ")' />";
-        $("#" + objectHash[i].name).css({"width": "50px", "position": "absolute",
-            "top": objectHash[i].top + "%", "left": objectHash[i].left + "%"});
+
+        objectHash[i].silhouette = "<img src='assets/img/objects/silhouettes/" + objectHash[i].name + ".png' class='img-scale' " +
+            "id='" + objectHash[i].id + "' />";
+
+        objectHash[i].img = "<img src='assets/img/objects/opaque/" + objectHash[i].name + ".png' class='img-scale' id='" +
+            objectHash[i].name + (i+1) + "' onclick='processClick(" + objectHash[i].id + ")' />";
+
     }
 
     initGame();
@@ -31,37 +30,41 @@ function initTheme() {
 
 function createFindList() {
 
-//    for(var i = 0; i < 1; i++) {
-//        find.push(objectHash[i]);
-//        find[i].img = "<img src='assets/img/objects/opaque/" + find[i].name + ".png' class='true' id='" + find[i].name
-//            + "' />";
-//    }
+    for(var i = 0; i < 10; i++) {
+        find.push(objectHash[i]);
+    }
 }
 
 function initPage() {
 
-//    for(var i=0; i<find.length; i++)
-//        $("#" + find[i].parent).append(find[i].img);
-//
-//    for(var i=10; i<objectHash.length; i++) {
-//        $("#" + objectHash[i].parent).append(objectHash[i].img);
-//
+    for(var i=0; i<find.length; i++)
+    {
+        $("#room").append(find[i].img);
+
+        $("#" + find[i].name + (i+1)).css({
+            "position": "absolute",
+            "top": find[i].top,
+            "left": find[i].left
+        });
+        if(i<5)
+            $("#first-col").append(find[i].silhouette);
+        else
+            $("#third-col").append(find[i].silhouette);
+    }
+
 }
 
 function initGame() {
 
-//    $("#countdown").countdowntimer({
-//        seconds: 120,
-//        tickInterval: 1,
-//        size: "lg",
-//        timeUp: endGame()
-//    });
+    $("#countdown").countdowntimer({
+        seconds: 120,
+        tickInterval: 1,
+        size: "lg",
+        timeUp: endGame()
+    });
 
-
+    createFindList();
     initPage();
-    console.log(objectHash[0].img);
-    $("#room").append(objectHash[0].img);
-    $("#room").append(objectHash[0].silhouette);
 
 }
 
@@ -73,22 +76,19 @@ function getClick() {
 
 function processClick(id) {
     var getItem;
-//
-//    $("#"+obj.attr("id")).fadeOut();
-//    $("#"+obj.attr(""))
 
-    for(i=0; i<objectHash.length; i++)
-    if(id==objectHash[i].id)
-        getItem = objectHash[i];
+    for(i=0; i<find.length; i++)
+    if(id==find[i].id)
+        getItem = find[i];
 
-    $("#" + getItem.name).animate({"width": "+=35%", "opacity": 0}, function(){
+    var pos = $("#" + getItem.id).position();
+
+    $("#" + getItem.name + id).animate({"top": pos.top, "left": pos.left}, function(){
         $(this).delay().hide();
     });
 
-    $("#" + getItem.id).animate({"width": "+=35%"}).hide();
 
     $("#" + getItem.id).attr("src", "assets/img/objects/opaque/" + getItem.name + ".png");
-    $("#" + getItem.id).animate({"width": "-=35%"}).fadeIn(1000);
 
 }
 
