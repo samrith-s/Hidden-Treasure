@@ -9,7 +9,7 @@
 /* jquery.countdownTimer.css*/
 
 .style {
-   /*width: 100%;*/
+   width: 100%;
    font-family: sans-serif;
    font-weight: bold;
    /*border-style: solid;*/
@@ -17,7 +17,7 @@
 
 .colorDefinition {
     /*background: #000000;*/
-    color : #FFFFFF;
+    color : #000000;
     /*border-color: #F0068E;*/
 }
 

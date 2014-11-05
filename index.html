@@ -13,24 +13,36 @@
     <script src="assets/js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
 </head>
-<body onload="initTheme()">
+<body onload="initGame()">
 <div id="wrapper">
     <div id="room">
-        <div id="splash"></div>
+        <video autoplay loop id="bgvid">
+            <source src="Dariba1.webm" type="video/webm">
+        </video>
+        <img src="assets/img/chandelier.png" id="chandelier"/>
+
+        <div id="pageLinks"></div>
     </div>
-    <table id="hud">
-        <tr>
-            <td id="second-col" colspan="2">
-                <span  id="countdown"></span>
-            </td>
-        </tr>
-        <tr>
-            <td id="first-col"></td>
-            <td id="third-col"></td>
-        </tr>
-    </table>
+    <div id="pages">
+        <div id="silhouetteTable"></div>
+    </div>
+    <div id="sidePanel">
+        <div id="scrollPanel"></div>
+        <div id="header"><img src="assets/img/header.png"/></div>
+    </div>
+    <div id="hourglass">
+        <img src="assets/img/hourglass.gif"/>
+        <div id="countdown"></div>
+    </div>
 </div>
 
+<div id="splash" onclick="location.reload()">
+    <img src="assets/img/lose.png"/>
+</div>
+
+<div id="banner">
+    <img src="assets/img/banner.png"/>
+</div>
 
 </body>
 </html>
