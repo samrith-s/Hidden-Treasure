@@ -1,7 +1,7 @@
 window.theme = {};
 window.game = {};
 game.time = 120;
-game.hiddenCount = 9;
+game.hiddenCount = 10;
 game.pages = [
     {
         name: "shelf",
