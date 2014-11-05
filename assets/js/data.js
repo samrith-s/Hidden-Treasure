@@ -43,10 +43,10 @@ game.pages = [
         objects: [
             {
                 name: "drum",
-                height: 3,
-                left: 21.3,
-                top: 28,
-                width: 2.7
+                height: 7,
+                left: 20.8,
+                top: 27,
+                width: 3.7
             },
             {
                 name: "shield",
@@ -106,10 +106,10 @@ game.pages = [
         objects: [
             {
                 name: "gold-fish",
-                height: 6,
-                left: 56.5,
-                top: 34.8,
-                width: 6
+                height: 15,
+                left: 54.5,
+                top: 30.8,
+                width: 9
             }
         ]
     }

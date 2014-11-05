@@ -26,9 +26,12 @@ function initPages(pagesHash) {
 
     $('.pageLink').on('click', function () {
         $('#banner').fadeOut();
+
         a = $(this).attr("id");
+        $("#room").css({"opacity": 0.6, "disabled": "disabled"});
         $('#'+a+"Page").fadeIn().find('.backBtn').on('click',function(){
             $('.page').fadeOut();
+            $("#room").css("opacity", 1);
             $('#banner').fadeIn();
         });
 
@@ -65,6 +68,8 @@ function showSplash(msg, delay, callback) {
             $('#pages').hide();
         },1000);
     }else{
+        $("#room").css({"opacity": 0.6, "disabled": "disabled"});
+
         $("#splash").fadeIn();
         $('#pages').hide();
     }
