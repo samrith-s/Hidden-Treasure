@@ -1,8 +1,10 @@
 var victorious=false;
 var foundItems=0;
+var counter=0;
 
 function initGame() {
-    initPages(game.pages);
+    var pages = shuffle(game.pages);
+    initPages(pages);
     $("#countdown").countdowntimer({
         seconds: game.time,
         tickInterval: 1,
@@ -19,6 +21,7 @@ function initPages(pagesHash) {
         var thisPage = pagesHash[i];
         $('#pageLinks').append('<div id="' + thisPage.name.toLowerCase() + '" class="pageLink" style="left:' + thisPage.left + '%;top:' + thisPage.top + '%;height:' + thisPage.height + '%;width:' + thisPage.width + '%" ></div>');
         $('#pages').append('<div id="' + thisPage.name.toLowerCase() + 'Page" class="page"><img src="assets/img/pages/' + thisPage.name + '/background.png" class="pageBack"/><a href="#" class="backBtn"><img src="assets/img/back.png"/></a></div>');
+        var ct = 0;
         for (j in pagesHash[i].objects) {
             addObject(thisPage, pagesHash[i].objects[j]);
         }
@@ -40,8 +43,15 @@ function initPages(pagesHash) {
 }
 
 function addObject(thisPage, thisObject) {
+
     $('#'+thisPage.name.toLowerCase()+"Page").append('<div id="' + thisObject.name.toLowerCase() + '" class="object" style="left:' + thisObject.left + '%;top:' + thisObject.top + '%;height:' + thisObject.height + '%;width:' + thisObject.width + '%"><img src="assets/img/pages/' + thisPage.name + '/'+thisObject.name+'.png" class="objectImg"/></div>');
-    $('#silhouetteTable').append('<div id="'+thisObject.name.toLowerCase()+'Sil" class="silhouette"><img src="assets/img/pages/' + thisPage.name + '/grey/'+thisObject.name+'.png"/>'+thisObject.name+'</div>')
+
+    if(counter < 10) {
+        console.log(counter);
+        $('#silhouetteTable').append('<div id="'+thisObject.name.toLowerCase()+'Sil" class="silhouette"><img src="assets/img/pages/' + thisPage.name + '/grey/'+thisObject.name+'.png"/>'+thisObject.name+'</div>')
+        counter++;
+    }
+
     $('#'+thisObject.name.toLowerCase()).on('click',function(){
         $this=$(this);
         var pos=$('#'+thisObject.name.toLowerCase()+'Sil').position();

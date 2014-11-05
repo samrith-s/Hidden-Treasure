@@ -29,7 +29,7 @@ game.pages = [
                 name: "parrot",
                 height: 10,
                 left: 72.5,
-                top: 39.5,
+                top: 29.5,
                 width: 4
             }
         ]
@@ -80,7 +80,7 @@ game.pages = [
                 width: 4
             },
             {
-                name: "blood-palm",
+                name: "stain",
                 height: 24,
                 left: 73.2,
                 top: 52.3,
@@ -105,7 +105,7 @@ game.pages = [
         height: 15,
         objects: [
             {
-                name: "gold-fish",
+                name: "goldfish",
                 height: 15,
                 left: 54.5,
                 top: 30.8,
@@ -139,20 +139,20 @@ game.pages = [
             {
                 name: "chesspiece",
                 height: 6,
-                left: 24.8,
-                top: 45,
-                width: 5.5
+                left: 16.8,
+                top: 63,
+                width: 10
             },
             {
                 name: "dilrubat",
                 height: 10,
-                left: 66.2,
-                top: 24.3,
-                width: 18
+                left: 70.2,
+                top: 32.3,
+                width: 10
 
             },
             {
-                name: "font",
+                name: "peacock",
                 height: 34,
                 left: 56,
                 top: 43.3,
