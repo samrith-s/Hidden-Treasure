@@ -1,132 +1,87 @@
-
-var objectHash = [];
-var find = [];
-var clicked;
-var gameType;
-
-
-$(function() {
-    setInterval(function() {
-        $("#hud").css("height", window.innerHeight*0.15);
-        $("#room").css("height", window.innerHeight*0.85);
-    }, 100);
-});
-
-function initTheme() {
-    document.body.style.backgroundImage = "";
-    objectHash = shuffle(objects);
-    for(var i = 0; i < objectHash.length; i++) {
-        objectHash[i].id = i+1;
-
-        objectHash[i].silhouette = "<img src='assets/img/objects/silhouettes/" + objectHash[i].name + ".png' class='img-scale' " +
-            "id='" + objectHash[i].id + "' />";
-
-        objectHash[i].img = "<img src='assets/img/objects/opaque/" + objectHash[i].name + ".png' class='img-scale' id='" +
-            objectHash[i].name + (i+1) + "' onclick='processClick(" + objectHash[i].id + ")' />";
-
-    }
-
-    initGame();
-
-}
-
-function createFindList() {
-    for(var i = 0; i < 10; i++) {
-        find.push(objectHash[i]);
-
-    }
-}
-
-function initPage() {
-    for(var i = 0; i < find.length; i++)
-        $("#"+find[i].parent).append(find[i].img);
-
-    for(var i = 10; i < objectHash.length; i++)
-        $("#"+objectHash[i].parent).append(objectHash[i].img);
-
-    for(var i=0; i<find.length; i++)
-    {
-        $("#room").append(find[i].img);
-
-        $("#" + find[i].name + (i+1)).css({
-            "position": "absolute",
-            "top": find[i].top,
-            "left": find[i].left
-        });
-        if(i<5)
-            $("#first-col").append(find[i].silhouette);
-        else
-            $("#third-col").append(find[i].silhouette);
-    }
-
-}
+var victorious=false;
+var foundItems=0;
 
 function initGame() {
-
+    initPages(game.pages);
     $("#countdown").countdowntimer({
-        seconds: 120,
+        seconds: game.time,
         tickInterval: 1,
         size: "lg",
-        timeUp: endGame()
-    });
-
-    createFindList();
-    initPage();
-
-}
-
-function getClick() {
-    $(".true").on('click', function() {
-        if(clicked == false)
-            processClick($(this).attr("id"));
+        timeUp: function(){
+            endGame();
+        }
     });
 }
 
-function processClick(id) {
-    var getItem;
+function initPages(pagesHash) {
+    console.log(pagesHash)
+    for (i in pagesHash) {
+        var thisPage = pagesHash[i];
+        $('#pageLinks').append('<div id="' + thisPage.name.toLowerCase() + '" class="pageLink" style="left:' + thisPage.left + '%;top:' + thisPage.top + '%;height:' + thisPage.height + '%;width:' + thisPage.width + '%" ></div>');
+        $('#pages').append('<div id="' + thisPage.name.toLowerCase() + 'Page" class="page"><img src="assets/img/pages/' + thisPage.name + '/background.png" class="pageBack"/><a href="#" class="backBtn"><img src="assets/img/back.png"/></a></div>');
+        for (j in pagesHash[i].objects) {
+            addObject(thisPage, pagesHash[i].objects[j]);
+        }
+    }
 
-    for(i=0; i<find.length; i++)
-    if(id==find[i].id)
-        getItem = find[i];
+    $('.pageLink').on('click', function () {
+        $('#banner').fadeOut();
+        a = $(this).attr("id");
+        $('#'+a+"Page").fadeIn().find('.backBtn').on('click',function(){
+            $('.page').fadeOut();
+            $('#banner').fadeIn();
+        });
 
-    var pos = $("#" + getItem.id).position();
-
-    $("#" + getItem.name + id).animate({"top": pos.top, "left": pos.left}, function(){
-        $(this).delay().hide();
     });
 
+}
 
-    $("#" + getItem.id).attr("src", "assets/img/objects/opaque/" + getItem.name + ".png");
-
+function addObject(thisPage, thisObject) {
+    $('#'+thisPage.name.toLowerCase()+"Page").append('<div id="' + thisObject.name.toLowerCase() + '" class="object" style="left:' + thisObject.left + '%;top:' + thisObject.top + '%;height:' + thisObject.height + '%;width:' + thisObject.width + '%"><img src="assets/img/pages/' + thisPage.name + '/'+thisObject.name+'.png" class="objectImg"/></div>');
+    $('#silhouetteTable').append('<div id="'+thisObject.name.toLowerCase()+'Sil" class="silhouette"><img src="assets/img/pages/' + thisPage.name + '/grey/'+thisObject.name+'.png"/>'+thisObject.name+'</div>')
+    $('#'+thisObject.name.toLowerCase()).on('click',function(){
+        $this=$(this);
+        var pos=$('#'+thisObject.name.toLowerCase()+'Sil').position();
+        $this.animate({
+            left:pos.left +0.9*$('#pages').width()+13, // Change the formula if the margin for pages changes
+            top:pos.top+0.1*$('#pages').height()+48,  // Change the formula if the margin for pages changes
+            width:"40px"
+        });
+        foundItems++;
+        checkVictory();
+    });
 }
 
 function showSplash(msg, delay, callback) {
-    switch(delay.toString()) {
-        case "0":
-            msg += msg += " <br /> <br /> <input value='Play Again' type='button' onclick='initTheme()' /> ";
-            $('#splasher').html(msg).fadeIn(500);
-            break;
+    if(msg=="win"){
+        setTimeout(function(){
+            $("#splash").find('img').attr("src","assets/img/win.png")
+            $("#splash").fadeIn();
+            $('#pages').hide();
+        },1000);
+    }else{
+        $("#splash").fadeIn();
+        $('#pages').hide();
+    }
 
-        default:
-            $('#splasher').html(msg).fadeIn(500).delay(delay).fadeOut(500);
-            setTimeout(function() {
-                if(typeof callback === "function") {
-                    callback();
-                }
-            }, 3000);
+}
+
+function checkVictory(){
+    if (game.hiddenCount==foundItems){
+        victory();
     }
 }
 
 function victory() {
-    var msg = "Congratulations! <br /> You found all the Hidden Objects! <br /> <br/> Click 'Play Again' to Restart the Game";
-    showSplash(msg, 0);
+    victorious=true;
+    showSplash("win", 0);
 }
 
 function endGame() {
-    var msg = "Uh Oh! <br /> Time's Up! <br /> <br/> Click 'Play Again' to Restart the Game";
-    showSplash(msg, 0);
+    if(!victorious){
+        showSplash("lose", 0);
+    }
 }
 
 function ticking() {
-    console.log("Seconds changed!");
 }
