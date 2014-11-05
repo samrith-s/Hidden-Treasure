@@ -114,9 +114,9 @@ body {
 #hourglass{
     position: absolute;
     left:10px;
-    bottom: 15%;
+    bottom: 0%;
     width:30%;
-    z-index:999999;
+    z-index:900;
 }
 
 #hourglass img{
