@@ -10,7 +10,7 @@
 
 .style {
    /*width: 100%;*/
-   font-family: sans-serif;
+   font-family: Ceria;
    font-weight: bold;
    /*border-style: solid;*/
 }
@@ -28,7 +28,7 @@
 }
 
 .size_lg {
-   font-size:40px;
+   font-size:35px;
    /*border-width: 7px;*/
    /*border-radius: 5px;*/
 }

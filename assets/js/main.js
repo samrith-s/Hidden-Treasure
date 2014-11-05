@@ -26,9 +26,12 @@ function initPages(pagesHash) {
 
     $('.pageLink').on('click', function () {
         $('#banner').fadeOut();
+
         a = $(this).attr("id");
+        $("#room").css({"opacity": 0.6, "disabled": "disabled"});
         $('#'+a+"Page").fadeIn().find('.backBtn').on('click',function(){
             $('.page').fadeOut();
+            $("#room").css("opacity", 1);
             $('#banner').fadeIn();
         });
 
@@ -43,10 +46,15 @@ function addObject(thisPage, thisObject) {
         $this=$(this);
         var pos=$('#'+thisObject.name.toLowerCase()+'Sil').position();
         $this.animate({
-            left:pos.left +0.9*$('#pages').width()+13, // Change the formula if the margin for pages changes
-            top:pos.top+0.1*$('#pages').height()+48,  // Change the formula if the margin for pages changes
-            width:"40px"
-        });
+                left:pos.left +0.9*$('#pages').width()+13, // Change the formula if the margin for pages changes
+                top:pos.top+0.1*$('#pages').height()+48,  // Change the formula if the margin for pages changes
+                width:"40px",
+                opacity: 0
+            },
+            function() {
+                $('#' + thisObject.name.toLowerCase() + 'Sil img').delay(500).attr("src", "assets/img/pages/" + thisPage.name + "/" + thisObject.name + ".png").css({width: "50px", height: "50px"});
+            }
+        );
         foundItems++;
         checkVictory();
     });
@@ -60,6 +68,8 @@ function showSplash(msg, delay, callback) {
             $('#pages').hide();
         },1000);
     }else{
+        $("#room").css({"opacity": 0.6, "disabled": "disabled"});
+
         $("#splash").fadeIn();
         $('#pages').hide();
     }
