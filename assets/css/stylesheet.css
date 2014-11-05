@@ -157,7 +157,7 @@ body {
     width:120%;
     right:10%;
     /*top:87%;*/
-    height: 680px;
+    height: 555px;
     background-size: 100% 100%;
 }
 
@@ -177,7 +177,7 @@ body {
     width:50%;
     position: absolute;
     bottom: 0;
-    left:10%;
+    left:15%;
 }
 
 #banner img{

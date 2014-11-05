@@ -25,14 +25,14 @@ function initPages(pagesHash) {
     }
 
     $('.pageLink').on('click', function () {
-        $('#banner').fadeOut();
+        //$('#banner').fadeOut();
 
         a = $(this).attr("id");
         $("#room").css({"opacity": 0.6, "disabled": "disabled"});
         $('#'+a+"Page").fadeIn().find('.backBtn').on('click',function(){
             $('.page').fadeOut();
             $("#room").css("opacity", 1);
-            $('#banner').fadeIn();
+            //$('#banner').fadeIn();
         });
 
     });
