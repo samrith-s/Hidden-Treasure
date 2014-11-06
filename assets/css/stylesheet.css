@@ -1,5 +1,11 @@
 @import url("jquery.countdownTimer.css");
 
+
+@font-face {
+    font-family: Ceria;
+    src: url('../fonts/Ceria.otf');
+}
+
 body {
     padding: 0;
     margin: auto;
@@ -28,7 +34,7 @@ body {
 }
 
 #bgvid{
-    position: relative;
+    position: absolute;
     width: 95%;
     border: 10px solid black;
     box-shadow: 10px 10px 50px 20px black;
@@ -60,7 +66,7 @@ body {
     display: none;
     position: absolute;
     width:80%;
-    margin:4% 7% 10%;
+    margin: 4% 7% 10%;
     border: 10px solid black;
     pointer-events:auto;
 }
@@ -88,8 +94,8 @@ body {
 
 #silhouetteTable{
     width:19%;
-    left:100%;
-    top:15%;
+    left:99%;
+    top:35%;
     position: absolute;
     z-index:999;
 }
@@ -100,22 +106,22 @@ body {
 }
 
 .silhouette{
-    width:50px;
-    height:50px;
+    width:70px;
+    height:72px;
     margin:15px;
     float:left;
     text-align: center;
 }
 .silhouette img{
-    height:50px;
+    height:70px;
 }
 
 #hourglass{
     position: absolute;
-    left:10px;
+    left:-8px;
     bottom: 0%;
     width:25%;
-    z-index:900;
+    z-index: 900;
 }
 
 #hourglass img{
@@ -124,11 +130,24 @@ body {
 }
 #hourglass #countdown{
     position: absolute;
-    padding: 5%;
-    background: rgba(1, 1, 1, 0.7);
+    padding: 7%;
+    padding-top: 12%;
     border-radius: 50px;
     text-align: center;
-    top:60%;
+    top:35%;
+    margin-left: 30%;
+    min-width: 25%;
+
+    background-image: url('../img/timer.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+
+}
+
+#countdown span {
+    margin-top: 10%;
 }
 
 
@@ -139,10 +158,11 @@ body {
     width:20%;
     position: relative;
     z-index:99;
+    top: 22%;
 }
 #header{
     position: absolute;
-    margin-top: 220%;
+    margin-top: -58%;
     width:100%;
     text-align: right;
 }
@@ -157,7 +177,7 @@ body {
     width:120%;
     right:10%;
     /*top:87%;*/
-    height: 555px;
+    height: 660px;
     background-size: 100% 100%;
 }
 
@@ -176,8 +196,8 @@ body {
 #banner{
     width:50%;
     position: absolute;
-    bottom: 0;
-    left:15%;
+    bottom: -2%;
+    left: 19%;
 }
 
 #banner img{

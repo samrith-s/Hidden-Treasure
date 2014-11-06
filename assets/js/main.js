@@ -1,8 +1,13 @@
 var victorious=false;
 var foundItems=0;
+var counter=0;
 
 function initGame() {
-    initPages(game.pages);
+    var pages = shuffle(game.pages);
+    for(var i = 0; i < pages.length; i++)
+        pages[i].objects = shuffle(pages[i].objects);
+
+    initPages(pages);
     $("#countdown").countdowntimer({
         seconds: game.time,
         tickInterval: 1,
@@ -19,20 +24,21 @@ function initPages(pagesHash) {
         var thisPage = pagesHash[i];
         $('#pageLinks').append('<div id="' + thisPage.name.toLowerCase() + '" class="pageLink" style="left:' + thisPage.left + '%;top:' + thisPage.top + '%;height:' + thisPage.height + '%;width:' + thisPage.width + '%" ></div>');
         $('#pages').append('<div id="' + thisPage.name.toLowerCase() + 'Page" class="page"><img src="assets/img/pages/' + thisPage.name + '/background.png" class="pageBack"/><a href="#" class="backBtn"><img src="assets/img/back.png"/></a></div>');
+        var ct = 0;
         for (j in pagesHash[i].objects) {
             addObject(thisPage, pagesHash[i].objects[j]);
         }
     }
 
     $('.pageLink').on('click', function () {
-        //$('#banner').fadeOut();
+        $('#banner').fadeOut();
 
         a = $(this).attr("id");
         $("#room").css({"opacity": 0.6, "disabled": "disabled"});
         $('#'+a+"Page").fadeIn().find('.backBtn').on('click',function(){
             $('.page').fadeOut();
             $("#room").css("opacity", 1);
-            //$('#banner').fadeIn();
+            $('#banner').fadeIn();
         });
 
     });
@@ -40,21 +46,29 @@ function initPages(pagesHash) {
 }
 
 function addObject(thisPage, thisObject) {
+
     $('#'+thisPage.name.toLowerCase()+"Page").append('<div id="' + thisObject.name.toLowerCase() + '" class="object" style="left:' + thisObject.left + '%;top:' + thisObject.top + '%;height:' + thisObject.height + '%;width:' + thisObject.width + '%"><img src="assets/img/pages/' + thisPage.name + '/'+thisObject.name+'.png" class="objectImg"/></div>');
-    $('#silhouetteTable').append('<div id="'+thisObject.name.toLowerCase()+'Sil" class="silhouette"><img src="assets/img/pages/' + thisPage.name + '/grey/'+thisObject.name+'.png"/>'+thisObject.name+'</div>')
+
+    if(counter < game.hiddenCount) {
+        console.log(counter);
+        $('#silhouetteTable').append('<div id="'+thisObject.name.toLowerCase()+'Sil" class="silhouette"><img src="assets/img/pages/' + thisPage.name + '/grey/'+thisObject.name+'.png"/>'+thisObject.name+'</div>')
+        counter++;
+    }
+
     $('#'+thisObject.name.toLowerCase()).on('click',function(){
         $this=$(this);
         var pos=$('#'+thisObject.name.toLowerCase()+'Sil').position();
         $this.animate({
-            left:pos.left +0.9*$('#pages').width()+13, // Change the formula if the margin for pages changes
-            top:pos.top+0.1*$('#pages').height()+48,  // Change the formula if the margin for pages changes
-            width:"40px",
-			opacity: 0
-        },
-		function() {
-			$('#' + thisObject.name.toLowerCase() + 'Sil img').delay(500).attr("src", "assets/img/pages/" + thisPage.name + "/" + thisObject.name + ".png").css({width: "50px", height: "50px"});
-		}
-		);
+                left:pos.left +0.9*$('#pages').width()+30, // Change the formula if the margin for pages changes
+                top:pos.top+0.1*$('#pages').height()+172,  // Change the formula if the margin for pages changes
+                width:"70px",
+                opacity: 1
+            },
+            function() {
+                $('#' + thisObject.name.toLowerCase() + 'Sil img').delay(500).attr("src", "assets/img/pages/" + thisPage.name + "/" + thisObject.name + ".png").css({width: "70px", height: "70px"});
+                $('#' + thisObject.name.toLowerCase() + 'Sil').css("text-decoration", "line-through");
+            }
+        );
         foundItems++;
         checkVictory();
     });

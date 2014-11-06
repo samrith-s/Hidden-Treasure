@@ -10,14 +10,14 @@
 
 .style {
    /*width: 100%;*/
-   font-family: sans-serif;
+   font-family: Ceria;
    font-weight: bold;
    /*border-style: solid;*/
 }
 
 .colorDefinition {
     /*background: #000000;*/
-    color : #FFFFFF;
+    color : #BD7E28;
     /*border-color: #F0068E;*/
 }
 
@@ -28,7 +28,7 @@
 }
 
 .size_lg {
-   font-size:40px;
+   font-size:70px;
    /*border-width: 7px;*/
    /*border-radius: 5px;*/
 }
