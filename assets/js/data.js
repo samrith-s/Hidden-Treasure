@@ -137,7 +137,7 @@ game.pages = [
         height: 7,
         objects: [
             {
-                name: "chesspiece",
+                name: "pawn",
                 height: 6,
                 left: 16.8,
                 top: 63,

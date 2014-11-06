@@ -63,6 +63,7 @@ function addObject(thisPage, thisObject) {
             },
             function() {
                 $('#' + thisObject.name.toLowerCase() + 'Sil img').delay(500).attr("src", "assets/img/pages/" + thisPage.name + "/" + thisObject.name + ".png").css({width: "50px", height: "50px"});
+                $('#' + thisObject.name.toLowerCase() + 'Sil').css("text-decoration", "line-through");
             }
         );
         foundItems++;

@@ -95,7 +95,7 @@ body {
 #silhouetteTable{
     width:19%;
     left:100%;
-    top:15%;
+    top:12%;
     position: absolute;
     z-index:999;
 }
@@ -171,7 +171,7 @@ body {
     width:120%;
     right:10%;
     /*top:87%;*/
-    height: 680px;
+    height: 605px;
     background-size: 100% 100%;
 }
 
